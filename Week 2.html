@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Week 2 - Buttons</title>
+
+	<style>
+		/*
+			NOT BUTTONS!
+		*/ 
+		/* CSS reset */
+		button {
+			outline: none;
+			background: transparent;
+			border: none;
+			width: max-content;
+
+			margin: 20px;
+		}
+		body {
+			margin: 0;
+		}
+
+		/* Center everything */
+		body {
+			display: flex;
+			justify-content: center;
+		}
+		.content {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap; /* Tells the flexbox to wrap items to next line when there's overflow */
+			width: min-content; /* Ensures it actually wraps things by telling it to minimize its width without being less than the content */
+		}
+
+		/* Prettier header */
+		h1 {
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			border-bottom: 1px solid #666;
+			padding: 8px 60px;
+
+			/* 		x  y     blur  spread  color */
+			box-shadow: 0  10px  10px  -10px   #00000020;
+		}
+
+		/*
+			BUTTONS!
+		*/
+		/* Button that darkens when clicked */
+		.github {
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			font-size: 1.20em;
+			color: #333;
+
+			background: #F6F6F6;
+			/*       y    x */
+			padding: 8px  25px;
+			border-radius: 10px;
+
+			/*      width  style  color */
+			border: 1px    solid  #d3d3d3;
+
+			cursor: pointer;
+
+			/* 		x    y    blur  spread  color */
+			box-shadow: 0px  5px  8px   -3px    #00000016;
+
+			/* 		property    duration  ease-function */
+			transition: background  100ms     ease-out;
+		}
+		.github:hover {
+			background: #f2f2f2;
+			box-shadow: 0px  5px  8px   -3px    #00000020;
+		}
+		.github:active {
+			background: #eaeaea;
+		}
+
+		/* Button appears to be pressed down when you click */
+		.duolingo {
+			position: relative;
+			top: -4px;
+
+			color: white;
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			font-size: 1.25em;
+			background: #30A4E6;
+
+			border-radius: 10px;
+			padding: 10px 24px;
+
+			cursor: pointer;
+
+			transition: top 60ms cubic-bezier(0.165, 0.84, 0.44, 1);
+		}
+		.duolingo::after {
+			content: "";
+			background-color: #1B89C9;
+
+			position: absolute;
+			top: 7px;
+			left: 0;
+			z-index: -1;
+
+			border-radius: 10px;
+			width: 100%;
+			height: 100%;
+			transition: top 60ms cubic-bezier(0.165, 0.84, 0.44, 1);
+		}
+		.duolingo:active { /* changes position on click */
+			top: 3px;
+		}
+		.duolingo:active::after {
+			top: 0px;
+		}
+
+		/* High contrast button with similar effect as duolingo but with x component, thick border, and all caps */
+		.hovering {
+			position: relative;
+			top:  -2px;
+			left: -2px;
+
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			font-weight: bold;
+			font-size: 1.2em;
+			color: #433520;
+
+			background: #F6E3C8;
+			border: 3px solid #433520;
+			padding: 6px 24px;
+			border-radius: 30px;
+
+			/* 4 BOX SHADOWS: crazy, but surprisingly effective */
+			/* alternatively: use clip-path on pseudoelement */
+			box-shadow: 4px 4px 0 #433520;
+
+			transition: top, left, box-shadow;
+			transition-duration: 40ms;
+			transition-timing-function: ease-out;
+
+			cursor: pointer;
+		}
+		.hovering:active {
+			top:  2px;
+			left: 2px;
+			box-shadow: none;
+		}
+
+		/* High contrast button; similar effect to previous, but continuous */
+		.impact {
+			position: relative;
+			top:  -1px;
+			left: -1px;
+
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			text-transform: uppercase; /* forces letters to be uppercase */
+			font-size: 1.25em;
+			color: #111;
+			letter-spacing: 3px; /* increases spacing between letters */
+
+			background: #f1f1f1;
+			border: 3px solid black;
+			padding: 2px 16px;
+
+			/* 5 BOX SHADOWS: crazy, but easy when the button isn't very "tall" */
+			/* alternatively: use clip-path on pseudoelement */
+			box-shadow: 5px 5px 0 black, 4px 4px 0 black, 3px 3px 0 black, 2px 2px 0 black, 1px 1px 0 black;
+
+			transition: top, left, box-shadow;
+			transition-duration: 40ms;
+			transition-timing-function: ease-out;
+
+			cursor: pointer;
+		}
+		.impact:active {
+			top:  4px;
+			left: 4px;
+			box-shadow: none;
+		}
+
+		.bubble {
+			position: relative;
+
+			background: #f6f6f6;
+			border: 2px solid #333;
+			padding: 8px 28px;
+			border-radius: 10px;
+			box-shadow: 0 5px 5px -3px #00000040;
+
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			font-size: 1.2em;
+			color: black;
+
+			cursor: pointer;
+			overflow: hidden;
+
+			transition: border 250ms linear, color 250ms linear, transform 50ms ease-out, box-shadow 50ms ease-out;
+		}
+		.bubble::after {
+			content: "";
+			
+			position: absolute;
+			bottom: 0;
+			right: 50%;
+			z-index: 0;
+			
+			background: #009087;
+			width:  150px;
+			height: 150px;
+			border-radius: 50%;
+			transform: translate(50%, 80%) scale(0);
+
+			transition: transform 250ms linear;
+		}
+		.bubble:hover {
+			border-color: #009087;
+			color: white;
+		}
+		.bubble:hover::after {
+			transform: translate(50%, 50%) scale(1);
+		}
+		.bubble span {
+			position: relative;
+			z-index: 1;
+		}
+		
+		.bubble:active {
+			transform: translateY(2px);
+			border-color: #00867d;
+			box-shadow: 0 3px 5px -3px #00000040;
+		}
+		.bubble:active::after {
+			background: #00867d;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<h1>Buttons</h1>
+		<button class="github">GitHub</button>
+		<button class="duolingo">Duolingo</button>
+		<button class="hovering">Hovering</button>
+		<button class="impact">Impact</button>
+		<button class="bubble"><span>Bubble</span></button>
+	</div>
+</body>
+</html>
