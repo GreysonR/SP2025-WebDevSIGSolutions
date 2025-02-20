@@ -67,8 +67,8 @@
 
 			/* 		x    y    blur  spread  color */
 			box-shadow: 0px  5px  8px   -3px    #00000016;
-
-			/* 		property    duration  ease-function */
+			
+			/* 		property    duration  timing-function */
 			transition: background  100ms     ease-out;
 		}
 		.github:hover {
@@ -85,13 +85,13 @@
 			top: -4px;
 
 			color: white;
-			font-family: Arial, Helvetica, sans-serif;
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 			font-weight: bold;
 			font-size: 1.25em;
-			background: #30A4E6;
 
+			background: #93D333;
 			border-radius: 10px;
-			padding: 10px 24px;
+			padding: 8px 28px;
 
 			cursor: pointer;
 
@@ -99,13 +99,13 @@
 		}
 		.duolingo::after {
 			content: "";
-			background-color: #1B89C9;
 
 			position: absolute;
 			top: 7px;
 			left: 0;
 			z-index: -1;
 
+			background-color: #79b933;
 			border-radius: 10px;
 			width: 100%;
 			height: 100%;
@@ -139,7 +139,7 @@
 			box-shadow: 4px 4px 0 #433520;
 
 			transition: top, left, box-shadow;
-			transition-duration: 40ms;
+			transition-duration: 80ms;
 			transition-timing-function: ease-out;
 
 			cursor: pointer;
@@ -171,8 +171,8 @@
 			box-shadow: 5px 5px 0 black, 4px 4px 0 black, 3px 3px 0 black, 2px 2px 0 black, 1px 1px 0 black;
 
 			transition: top, left, box-shadow;
-			transition-duration: 40ms;
-			transition-timing-function: ease-out;
+			transition-duration: 80ms;
+			transition-timing-function: linear;
 
 			cursor: pointer;
 		}
@@ -186,21 +186,21 @@
 			position: relative;
 
 			background: #f6f6f6;
-			border: 2px solid #333;
-			padding: 8px 28px;
-			border-radius: 10px;
-			box-shadow: 0 5px 5px -3px #00000040;
+			border: 2px solid #d25528;
+			padding: 8px 24px;
+			border-radius: 100px;
 
 			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			font-weight: bold;
 			font-size: 1.2em;
-			color: black;
+			color: #d25528;
 
 			cursor: pointer;
 			overflow: hidden;
 
 			transition: border 250ms linear, color 250ms linear, transform 50ms ease-out, box-shadow 50ms ease-out;
 		}
-		.bubble::after {
+		.bubble::before {
 			content: "";
 			
 			position: absolute;
@@ -208,19 +208,19 @@
 			right: 50%;
 			z-index: 0;
 			
-			background: #009087;
-			width:  150px;
-			height: 150px;
+			background: #d25528;
+			width:  200px;
+			height: 200px;
 			border-radius: 50%;
 			transform: translate(50%, 80%) scale(0);
 
-			transition: transform 250ms linear;
+			transition: transform 250ms ease-out;
 		}
 		.bubble:hover {
-			border-color: #009087;
+			border-color: #d25528;
 			color: white;
 		}
-		.bubble:hover::after {
+		.bubble:hover::before {
 			transform: translate(50%, 50%) scale(1);
 		}
 		.bubble span {
@@ -230,11 +230,51 @@
 		
 		.bubble:active {
 			transform: translateY(2px);
-			border-color: #00867d;
+			border-color: #c74d21;
 			box-shadow: 0 3px 5px -3px #00000040;
 		}
-		.bubble:active::after {
-			background: #00867d;
+		.bubble:active::before {
+			background: #c74d21;
+		}
+
+		.deepsee {
+			font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			font-size: 1.4em;
+			text-transform: uppercase;
+			color: black;
+
+			padding: 12px 30px;
+			border: 1px solid black;
+			border-radius: 100px;
+
+			cursor: pointer;
+
+			transition: transform 200ms ease-out;
+		}
+		.deepsee>div {
+			position: relative;
+			/* background: red; */
+			overflow: hidden;
+		}
+		.deepsee span {
+			display: block;
+		}
+		.deepsee span.second {
+			position: absolute;
+			top:  100%;
+			left: 0;
+		}
+
+		.deepsee:hover {
+			transform: scale(1.01);
+		}
+		.deepsee:hover span {
+			transform: translateY(-100%);
+			transition: transform 300ms ease-out;
+		}
+		.deepsee:active {
+			transition-duration: 50ms;
+			transform: scale(0.99);
 		}
 	</style>
 </head>
@@ -243,9 +283,16 @@
 		<h1>Buttons</h1>
 		<button class="github">GitHub</button>
 		<button class="duolingo">Duolingo</button>
-		<button class="hovering">Hovering</button>
 		<button class="impact">Impact</button>
-		<button class="bubble"><span>Bubble</span></button>
+		<button class="bubble"><span>Get in touch</span></button>
+		<button class="deepsee">
+			<div>
+				<span class="first">Start the Experience</span>
+				<span class="second">Start the Experience</span>
+			</div>
+		</button>
+
+		<div class="test"></div>
 	</div>
 </body>
 </html>
